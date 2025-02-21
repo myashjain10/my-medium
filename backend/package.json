@@ -5,7 +5,7 @@
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
-    "@myashjain10/medium-zod-schemas": "^1.0.0",
+    "@myashjain10/medium-zod-schemas": "^1.0.2",
     "@prisma/client": "^6.3.1",
     "@prisma/extension-accelerate": "^1.2.1",
     "hono": "^4.6.20",

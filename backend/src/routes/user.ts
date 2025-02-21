@@ -14,19 +14,22 @@ export const userRouter = new Hono<{
 
 userRouter.post('/signup',async (c) => {
   const body = await c.req.json();
+  console.log("before signup validation")
 
-  const { success } = signupSchema.safeParse(body)
-    if(!success){
-      c.status(411);
-      return c.text("Incorrect signup inputs");
-    }
+  const { success } = signupSchema.safeParse(body);
+  if(!success){
+    c.status(411);
+    return c.text("Incorrect signup inputs");
+  }
+
+  console.log("after signup dvalidation");
 
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
-
   try{
+    console.log('inside try block')
     const user = await prisma.user.create({
       data:{
         email: body.email,
