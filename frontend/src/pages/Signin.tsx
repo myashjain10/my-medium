@@ -20,7 +20,7 @@ export function Signin(){
       console.log(response)
       const jwt = response.data.jwt;
       localStorage.setItem("token", jwt);
-      nav("/blog/4")
+      nav("/blogs")
     }catch(e){
       console.log(e);
 
