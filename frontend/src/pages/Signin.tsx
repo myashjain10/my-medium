@@ -23,7 +23,6 @@ export function Signin(){
       nav("/blogs")
     }catch(e){
       console.log(e);
-
     }
   }
 
