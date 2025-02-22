@@ -5,6 +5,7 @@ import { InputwithLabel } from "../components/InputwithLabel";
 import { Quote } from "../components/Quote";
 import axios from "axios";
 import { Button } from "../components/Button";
+import { LoadingText } from "../components/LoadingText";
 
 export function Signin(){
   const nav = useNavigate();
@@ -12,17 +13,19 @@ export function Signin(){
     email:"",
     password:""
   });
+  const [loading, setLoading] = useState(false);
 
-  async function sendRequest(){
+  async function handleButtonClick(){
+    setLoading(true)
     try{
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/signin`, postInputs);
-      console.log(response)
       const jwt = response.data.jwt;
       localStorage.setItem("token", jwt);
       nav("/blogs")
     }catch(e){
       console.log(e);
     }
+    setLoading(false)
   }
 
   return(
@@ -39,7 +42,7 @@ export function Signin(){
               <InputwithLabel label="Password"  type="password" onchange={(e) => {
                 setPostInputs({ ...postInputs, password:e.target.value})
               }} />
-              <Button onclick={sendRequest} label="Sign Up" />
+              {loading ? <LoadingText />:<Button onclick={handleButtonClick} label="Sign In" />}
           </div>
         </div>
         <Quote/>
