@@ -4,7 +4,6 @@ import { SignupInput } from "@myashjain10/medium-zod-schemas";
 import { InputwithLabel } from "../components/InputwithLabel";
 import { Quote } from "../components/Quote";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { Button } from "../components/Button";
 
 export function Signup(){
@@ -15,9 +14,11 @@ export function Signup(){
     password:""
   });
 
+
+
   async function sendRequest(){
     try{
-      const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, postInputs);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/signup`, postInputs);
       console.log(response)
       const jwt = response.data.jwt;
       localStorage.setItem("token", jwt);
