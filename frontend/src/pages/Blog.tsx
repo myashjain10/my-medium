@@ -3,6 +3,7 @@ import { useBlog } from "../hooks"
 import { Appbar } from "../components/Appbar";
 import { Avatar } from "../components/Avatar";
 import { FullBlog } from "../components/FullBlog";
+import { LoadingText } from "../components/LoadingText";
 
 export function Blog(){
   const { id }= useParams()
@@ -13,7 +14,7 @@ export function Blog(){
   if(loading || !blog){
     return (
       <div className="w-screen h-screen flex justify-center items-center">
-        Loading...
+        <LoadingText />
       </div>
     )
   }

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Appbar } from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard"
 import { useBlogs } from "../hooks";
+import { LoadingText } from "../components/LoadingText";
 
 export const Blogs = () =>{
 
@@ -9,7 +10,7 @@ export const Blogs = () =>{
 
   if(loading){
     return (
-      <div className="w-screen h-screen flex justify-center items-center"> Loading...</div>
+      <div className="w-screen h-screen flex justify-center items-center"> <LoadingText/></div>
     )
   }
   
